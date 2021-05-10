@@ -33,10 +33,10 @@ jobs:
       with:
         name: node-app
         path: |
-          project/package*.json
-          project/.next
-          project/public
-          project/server.js
+          app/package*.json
+          app/.next
+          app/public
+          app/server.js
 
   deploy:
     runs-on: ubuntu-latest
