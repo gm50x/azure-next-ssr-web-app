@@ -39,6 +39,8 @@ jobs:
           path: |
             project/package*.json
             project/.next
+            project/pages
+            project/styles
             project/public
 
   deploy:
