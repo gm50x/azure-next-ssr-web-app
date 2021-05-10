@@ -5,6 +5,8 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   const [session, loading] = useSession()
 
+  console.log('session', session)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -80,7 +82,7 @@ export default function Home() {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            <image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>

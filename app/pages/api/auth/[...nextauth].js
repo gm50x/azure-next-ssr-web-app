@@ -5,6 +5,22 @@ const tenantName = process.env.AZURE_TENANT_NAME
 const userFlow = process.env.AZURE_USER_FLOW
 
 export default NextAuth({
+    callbacks: {
+        jwt: (token, user, account, profile, isNewUser) => {
+            if (account?.idToken) {
+                token.accessToken = account.idToken
+            }
+            return token
+        },
+        session: (session, token) => {
+            if (token.accessToken) {
+                session.accessToken = token.accessToken
+            }
+
+            return session
+        }
+    },
+    secret: process.env.JWT_SECRET,
     providers: [
         Providers.AzureADB2C({
             tenantId: process.env.AZURE_TENANT_ID,
@@ -12,7 +28,6 @@ export default NextAuth({
             clientSecret: process.env.AZURE_CLIENT_SECRET,
             scope: 'offline_access openid profile email',
             version: '2.0',
-            secret: process.env.JWT_SECRET,
             params: {
                 grant_type: 'authorization_code'
             },
