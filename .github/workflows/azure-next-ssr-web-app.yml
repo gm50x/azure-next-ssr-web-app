@@ -5,9 +5,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - .
-      - .github/workflows/optimized-package-next-app.yml
+    # paths:
+    #   - .
+    #   - .github/workflows/optimized-package-next-app.yml
   workflow_dispatch:
 jobs:
   build:
