@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - project/src
+      - project/**/*
       - .github/workflows/optimized-package-next-app.yml
 
   workflow_dispatch:
