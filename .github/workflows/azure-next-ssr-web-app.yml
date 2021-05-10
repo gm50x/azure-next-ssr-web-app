@@ -61,4 +61,4 @@ jobs:
           app-name: 'azure-next-ssr-web-app'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_68d69f6b64c14f56a128e9bb612964bc }}
-package: .
+          package: .
