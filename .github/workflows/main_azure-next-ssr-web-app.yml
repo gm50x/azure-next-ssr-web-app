@@ -34,8 +34,10 @@ jobs:
       with:
         name: node-app
         path: |
-          project/**/*
-          !project/node_modules
+          project/.next
+          project/public
+          project/package*.json
+          next.config.js
 
   deploy:
     runs-on: ubuntu-latest
