@@ -35,7 +35,7 @@ jobs:
         name: node-app
         path: |
           project/**/*
-          !/**/node_modules
+          !project/node_modules
 
   deploy:
     runs-on: ubuntu-latest
