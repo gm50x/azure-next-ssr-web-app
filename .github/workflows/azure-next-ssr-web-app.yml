@@ -61,12 +61,16 @@ jobs:
         npm install --production
         ls node_modules/.bin
         echo '----- ----- -----'
+        ls node_modules/next
+        echo '----- ----- -----'
+        ls node_modules/next/dist/bin
+        echo '----- ----- -----'
       
-    - name: 'Deploy to Azure Web App'
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'azure-next-ssr-web-app'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ed6ff281ccc940148d15badd1ea8ad76 }}
-        package: .
+    # - name: 'Deploy to Azure Web App'
+    #   id: deploy-to-webapp
+    #   uses: azure/webapps-deploy@v2
+    #   with:
+    #     app-name: 'azure-next-ssr-web-app'
+    #     slot-name: 'production'
+    #     publish-profile: ${{ secrets.AzureAppService_PublishProfile_ed6ff281ccc940148d15badd1ea8ad76 }}
+    #     package: .
