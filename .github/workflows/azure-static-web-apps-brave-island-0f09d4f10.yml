@@ -21,7 +21,7 @@ jobs:
 
       - name: Copy package file into apis folders
         run: |
-          cp package*.json pages/api
+          ls -al
 
       - name: Build And Deploy
         id: builddeploy
