@@ -36,6 +36,7 @@ jobs:
           project/package*.json
           project/.next
           project/public
+          project/server.js
 
   deploy:
     runs-on: ubuntu-latest
