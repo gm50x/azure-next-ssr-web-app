@@ -59,12 +59,14 @@ jobs:
     - name: Install production dependencies
       run: |
         npm install --production
+        ls node_modules/.bin
+        echo '----- ----- -----'
       
-    - name: 'Deploy to Azure Web App'
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'azure-next-ssr-web-app'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ed6ff281ccc940148d15badd1ea8ad76 }}
-        package: .
+    # - name: 'Deploy to Azure Web App'
+    #   id: deploy-to-webapp
+    #   uses: azure/webapps-deploy@v2
+    #   with:
+    #     app-name: 'azure-next-ssr-web-app'
+    #     slot-name: 'production'
+    #     publish-profile: ${{ secrets.AzureAppService_PublishProfile_ed6ff281ccc940148d15badd1ea8ad76 }}
+    #     package: .
