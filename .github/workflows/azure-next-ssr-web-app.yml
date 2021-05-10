@@ -1,16 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and Deploy to Azure Web App - api-nest
+name: Build and deploy Node.js app to Azure Web App - azure-next-ssr-web-app
 
 on:
   push:
     branches:
       - main
-    paths:
-      - project/**/*
-      - .github/workflows/azure-next-ssr-web-app.yml
-
   workflow_dispatch:
 
 jobs:
@@ -18,28 +14,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
+    - name: Set up Node.js version
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-        working-directory: project
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+      working-directory: project
 
-      - name: Upload artifact for packaging job
-        uses: actions/upload-artifact@v2
-        with:
-          name: node-app
-          path: |
-            project/package*.json
-            project/public
-            project/.next
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v2
+      with:
+        name: node-app
+        path: |
+          project/package*.json
+          project/.next
+          project/public
+          project/next.config.js
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,26 +46,25 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: node-app
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v2
+      with:
+        name: node-app
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
+    - name: Set up Node.js version
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
 
-      - name: Install production dependencies
-        run: |
-          npm install --production
-          ls -al
+    - name: Install production dependencies
+      run: |
+        npm install --production
       
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'azure-next-ssr-web-app'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_68d69f6b64c14f56a128e9bb612964bc }}
-          package: .
+    - name: 'Deploy to Azure Web App'
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'azure-next-ssr-web-app'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ed6ff281ccc940148d15badd1ea8ad76 }}
+        package: .
