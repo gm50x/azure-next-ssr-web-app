@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "prestart": "npm i -g next",
     "start": "next start -p $PORT"
   },
   "dependencies": {
